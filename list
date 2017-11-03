@@ -1,0 +1,51 @@
+## --------- more list function ----------
+
+import random
+
+numbList= []
+
+for i in range(5):
+    numbList.append(random.randrange(1,9))
+
+print (numbList)
+
+##insert a number at the specified index
+print ('insert')
+numbList.insert(4,11)
+
+print (numbList)
+print()
+
+##remove the number which insert in numbList
+print ("remove")
+numbList.remove(11)
+print (numbList)
+print ()
+
+## remove the value which index=2
+print ("remove the value which index=2")
+numbList.pop(2)
+print (numbList)
+print ()
+##sorted() not change list self
+print ("useless function")
+s_list = sorted(numbList)
+print (s_list)
+print (numbList)
+
+## sort descending
+sd_list = sorted(numbList,reverse=True)
+print (sd_list)
+print (numbList)
+
+## useless sort function
+userLess = numbList.sort()
+print (userLess)
+
+
+##tuple can not sort >>> tup.sort()
+tup = (3,21,4,2,6,8)
+s_tup = sorted(tup)
+print(s_tup)
+print(max(tup))
+#print (tup.sort())

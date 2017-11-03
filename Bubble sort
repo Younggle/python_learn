@@ -1,0 +1,57 @@
+**------  python版本: 2.7------**
+
+
+
+
+# ----------- SORT A LIST : Bubble sort ---------
+from __future__ import  print_function
+import random
+
+#create a list by random generate
+numList = []
+a = 10
+
+for i in range(a):
+    numList.append(random.randrange(1,10))
+#define a variable to identify the last index
+i = len(numList) - 1
+
+#嵌套循环
+while i > 0:
+    j = 0
+
+    while j< i:
+
+        if numList[j] > numList[j + 1]:
+
+            numList[j],numList[j+1] = numList[j+1],numList[j]
+
+        j += 1
+
+    for k in numList:
+        print (k,end=",")
+
+    print ()
+
+
+    i -= 1
+
+
+## more list sort
+
+numList2 = []
+for i in range(5):
+    numList2.append(random.randrange(1,9))
+
+print(numList2)
+
+#bubble sort
+numList2.sort()
+print(numList2)
+##or use this
+numList2.reverse()
+print (numList2)
+
+#big to smart
+numList2.sort(reverse=True)
+print(numList2)

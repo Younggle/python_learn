@@ -49,3 +49,10 @@ s_tup = sorted(tup)
 print(s_tup)
 print(max(tup))
 #print (tup.sort())
+
+##random choice
+##随机选择ssl中的一个值
+ssl = ['tom','jack','guo','k','a']
+print (random.choice(ssl))
+
+

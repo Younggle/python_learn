@@ -1,0 +1,38 @@
+###python版本 2.7
+
+## ----------- list comprehension -------------
+
+import random
+
+liis = [9,8,5,6,7,3,2,4,1]
+
+## 随机从1-10中生成5个数字组成一个新的list
+numbList = []
+for i in range(5):
+    numbList.append(random.randrange(1,10))
+
+print (numbList)
+
+
+## 遍历打出0-9的list
+lss = [i for i in range(10)]
+print (lss)
+
+
+## 遍历出[0,2,4,6,8,...,18]
+lssa = [i * 2 for i in range(10)]
+print (lssa)
+
+
+
+_list = [1,2,3,4,5]
+
+## 打印出由_list中所有的值的3次方组成的list
+
+pow_list = [pow(i,3) for i in _list]
+
+print (pow_list)
+
+
+listOfValue = [[pow(i,2),pow(i,3),pow(i,4)] for i in _list]
+print (listOfValue)

@@ -1,0 +1,92 @@
+## python 版本 2.7
+
+#### ------------------ python function ---------
+
+##在代码中使用了python 3的语法
+from __future__ import print_function
+
+
+
+## 生成邮箱的方法
+# def allotEmail(firstName,surname):
+#     return firstName+ '.'+surname+"@163.com"
+#
+# name = raw_input("Enter your name:")
+# fName ,sName = name.split()
+# compEmail = allotEmail(fName,sName)
+#
+#print ("your email:"+compEmail)
+
+
+
+##自写的计算机工具类
+# def compute(num1,operator,num2):
+#
+#     num1 = int(num1)
+#     num2 = int(num2)
+#
+#     if(operator == "+"):
+#
+#         return (num1 + num2)
+#
+#     elif(operator == "-"):
+#         return (num1 - num2)
+#
+#     elif(operator == "*"):
+#
+#         return (num1 * num2)
+#
+#     elif(operator =="/"):
+#
+#         return (num1 / num2)
+#
+#     else:
+#         return "error"
+#
+# i = 2
+# while i > 0:
+#     num01,operator_,num02 = raw_input("input:")
+#     print(compute(num01,operator_,num02))
+
+
+##寻找素数的方法，从2开始一直到用户输入的那个数字，
+# def get_sum(*args):
+#     sum = 0
+#     for i in args:
+#         sum += i
+#     return sum
+#
+# print ("Sum =",get_sum(3,4,5,6))
+
+
+
+###############
+def isprime(num):
+
+    for i in range(2,num):
+        if(num%i) == 0:
+            return False
+
+    return True
+
+def getPrime(numMax):
+    primes = []
+
+    for num1 in range(2,numMax):
+        if isprime(num1):
+            primes.append(num1)
+
+    return primes
+
+maxNum = raw_input("input a number")
+
+maxNum = int(maxNum)
+
+listOFPrime = getPrime(maxNum)
+
+for prime in listOFPrime:
+    print (prime,end=",")
+    
+    
+    
+##待补充

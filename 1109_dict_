@@ -1,0 +1,72 @@
+
+## python版本2.7
+
+
+## 区别字典dict{},元组tuple(),列表list[]
+## 字典的特征： {key:value,key:value,key:value},
+## 列表list[]不能作为字典的key,key-value要求一个key对应一个或多个值，
+## list[]具有一个特性，能随意修改其中的值，所以不能作为key，而元组tuple可以
+## 元组tuple()中的值一旦确定，就不能随意更改，可以作为dict的key
+
+
+## *-- coding：utf-8 --*
+
+from _future_ import print_function
+
+##定义一个列表
+myBookList = ['java','python','android','linux']
+
+##定义一个字典
+myBook = {'name':'python','prices':'30','weight':'2kg'}
+
+## 注意区别字典和列表的使用方法
+print('this book is:',myBook['name'])
+print('this book is:',myBookList[1])
+
+## 给字典添加新的key-value
+myBook['owner'] = 'yl'
+print(myBook)
+
+## 修改某个key的值,对这个key重新赋值
+myBook['name'] = 'C++'
+print(myBook)
+
+
+### 打印出myBook中所有的value,结果是list[]格式
+
+print(myBook.values())
+
+## 遍历values
+for v in myBook.values():
+    print(v,end=',')
+print('\n')
+
+### 打印出myBook中的的key
+print(myBook.keys())
+
+## 遍历keys
+for v in myBook.keys():
+    print(v,end=',')
+print('\n')
+
+## 遍历出字典中所有的项目，即每一对key:value
+print(myBook.items())
+for v in myBook.items():
+    print(v,end=',')
+print('\n')
+
+## 字典的get()方法,
+### 使用get('a','b')：如果当前字典中有名为'a'的key,则返回key对应的value
+### 若字典中没有对应的'a',则执行'b'.
+
+print(myBook.get('name','null'))
+print(myBook.get('writer','null'))
+
+## 删除item
+del myBook['writer']
+
+## 清空字典
+myBook.clear()
+print(myBook)
+
+

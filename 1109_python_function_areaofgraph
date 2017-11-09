@@ -1,0 +1,58 @@
+## python 版本2.7
+## 本节知识点
+## python内置函数模块 math的使用，float精度
+
+>>import math
+>>math(help)
+##可查看math的内置函数
+
+###--------------------------- compute area of graph ----------------------
+
+import math
+
+## 获取用户输入的数据，具体图形的类型
+shape_Type = raw_input("input the type of graph:")
+
+##防止大小写混写
+shape_Type = shape_Type.lower()
+
+##定义计算面积的方法
+
+def get_area(shapeType):
+    if shapeType == "rectangle":
+        rectangle_area()
+    elif shapeType == "circle":
+        circle_area()
+    elif shapeType == "triangle":
+        triangle_area()
+    else:
+        print("please input right type")
+        
+def rectangle_area():
+    length = float(raw_input("input length:"))
+    width = float(raw_input("input width:"))
+    area = length * width
+    print("rectangle's area is{:}".format(area))
+    
+def circle_area()：
+    radius = raw_input("input circle's radius:")
+    
+    ## pow(a,b) 方法：求a的b次方为多少
+    area = float(math.pi * pow(radius,2))
+    
+    ##{}.format() 使用.format(),一定不要忘了前面的{:},{:} 是将前后内容隔开，2f用于控制float的精度
+    
+    print("circle's area is{:2f}".format(area))
+    
+def triangle_area():
+    bottom = float(raw_input("input triangle's bottom:"))
+    height = float(raw_input("input triangle's height:"))
+    area = float(bottom * height / 2)
+    print("triangle's area is{:}".format(area))
+
+##定义完所有函数方法之后，进行调用
+
+get_area(shape_Type)
+
+
+##

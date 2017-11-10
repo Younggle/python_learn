@@ -1,0 +1,18 @@
+## python版本 2.7
+
+# -*- coding:utf-8 -*-
+
+libary = {'history':10,'news':11,'magazine':20}
+libary['kids']= 21
+print (libary)
+
+## setdefault(a,b)方法，首先从dict[a]中获得对应的value，如果a不是dict中的key，则返回default值b.
+libary.setdefault('male',0)
+print (libary)
+
+libary.setdefault('history',1)
+print (libary)
+
+
+print("there are {} history  and  {} magazine".format(libary.get('history',0),libary.get('magazine',0)))
+

@@ -10,9 +10,33 @@ print (libary)
 libary.setdefault('male',0)
 print (libary)
 
+## 在history已经有value的情况下，只会返回该已存在的value,不会返回default值1
 libary.setdefault('history',1)
 print (libary)
 
-
 print("there are {} history  and  {} magazine".format(libary.get('history',0),libary.get('magazine',0)))
+
+#####################
+
+## 与setdefault()方法不同,get()方法是查询key的value，而setdefault()能添加新的key和value，当然也包含了查询用法
+
+#####################
+
+## list[]和dict{}的区别
+
+list1= ['alia','koo','yummy']
+list2= ['yummy','koo','alia']
+print(list1 == list2)
+##结果为false,list[]中的item的顺序不允许改变
+
+dict1= {'jack':12,'tim':11,'muscle':90,'hop':7}
+dict2 = {'tim':11,'hop':7,'jack':12,'muscle':90}
+print (dict1 == dict2)
+##结果为True，2个dict的item如果相同,那么他们就是相同的.
+
+
+
+
+
+
 

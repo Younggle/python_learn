@@ -1,0 +1,55 @@
+# -*- coding:utf-8 -*-
+## python版本 2.7
+
+
+##字典就是一个简单的database
+
+##生成一个记录人名和生日的dict
+birthday_db = {'lily':'10.1','Lee':'9.9','Pep':'6.23','jack':'1.1'}
+print(birthday_db)
+
+
+while True:
+    name = raw_input('Enter a name(blank to quit):')
+
+    if name == "":
+        break
+    elif name in birthday_db:
+        print ('{} is the birthday of {}'.format(birthday_db[name],name))
+    else:
+        print ('there is no have ',name,'\'s information')
+        new_birth = raw_input('What is the birthday:')
+        birthday_db[name] = new_birth
+        print ('New birthday noted')
+
+print (birthday_db)
+
+
+####################################自动发送邮件，输入多个人名和性别###################################
+
+customers = []
+
+while True:
+    createEntry = raw_input("Enter customer(yes/no)")
+    createEntry = createEntry[0].lower()
+
+    if createEntry == 'n':
+        break
+    else:
+        ## split()以空格将发fName,lName,gender隔开
+        fName,lName,gender = raw_input('Enter custer\'s name&gender:').split()
+        customers.append({'fName':fName,'lName':lName,'gender':gender})
+
+
+for cust in customers:
+
+    if cust['gender'] == 'male':
+        title='Mr. '+cust['lName']
+    else:
+        title="Ms. "+cust['lName']
+
+    print ('''Dear {},
+    As our distinguished customer,that .....
+    '''.format(title))
+    
+

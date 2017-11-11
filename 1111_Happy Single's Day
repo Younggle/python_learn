@@ -1,8 +1,82 @@
 ## Python版本:2.7
 
+##python自带的集合set()模块
+### set和dict类似，也是一组key的集合，但不存储value。由于key不能重复，所以，在set中，没有重复的key
+## 
+
+
+# >>a = set(['a','b','c','a','b'])
+# >>a
+# >>set(['a', 'c', 'b'])
+# >>a = set({'a','b','c','a','b'})
+# >>a
+# >>set(['a', 'c', 'b'])
+
+# set()只会打印出list,dict的key而不是value
+# >>a = set({'i':'yeah','wanna':'yeah','fuck':'u'})
+# >>a
+# >>set(['i', 'wanna', 'fuck'])
+
 
 # -*- coding:utf-8 -*-
 
+## set()会自动过滤掉重复的key
+items = {'arrow','spear',"arrow",'arrow','rock'}
+print(items)
+
+## 此时打印过滤后的set()长度
+print(len(items))
+
+if "clock" in items:
+    print("Rock exit")
+else:
+    print ('not found')
+
+pets = set()
+
+## 对set()执行add(),可以添加相同的元素，但是不会重复
+pets.add('cat')
+pets.add('dog')
+pets.add('gerbil')
+
+## add()每次只能添加1个元素，update()可以添加多个(添加一个list，dict)
+## set集合中的元素是无序排列的
+
+pets.update([10,12,34,90])
+print (pets)
+pets.update({'name':'Snoop','color':'black','size':'strong'})
+pets.discard('cat')
+print (pets)
+
+## remove() 和 discard()的区别在于，remove一个set中不存在的元素，会报错，discard不会
+pets.discard(('zebra'))
+pets.remove('oko')
 
 
 #############
+## set中具有数学意义的操作符 & ,|,-,^
+
+number1 = {1,2,3,4,5}
+number2 = {2,3,4,5,8}
+
+# 取2个set的并集，过滤重复key
+print (number1 | number2)
+
+# 取交集,也过滤重复key
+print (number1 & number2)
+
+# 取相对补集，就是除了交集之外的key
+print (number1 - number2)
+
+number2.update([10,20,40,50])
+print (number2)
+
+dict1 = {'cat':1,'dog':2,'bird':3}
+print (dict1)
+keys = set(dict1)
+print (keys)
+
+## str类型也会被拆分，过滤
+for i in set('apple'):
+    print (i,end = ',')
+

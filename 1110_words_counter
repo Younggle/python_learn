@@ -1,0 +1,28 @@
+## python版本2.7
+## 本次引进了一个非常强大的模块pprint,pprint提供了输出和判断python中所有数据结构的方法（中文除外，至少在2.7没实现）
+## pprint.pprint() ,pformat(),isreadable(),isrecursive(),saferepr()
+
+# -*- coding:utf-8 -*-
+import pprint
+
+message = '''
+All I ever wanted was a single thing 
+worth fighting for.
+The only thing predictable about life 
+is its unpredictability. 
+'''
+
+words = message.split()
+
+count = {}
+
+for word in words:
+    ## 判断是否是标点符号，若是就不截取
+    if not word[-1].isalpha():
+        word = word[:-1]
+
+    count.setdefault(word,0)
+    count[word]+=1
+    word = word.lower()
+
+pprint.pprint(count)

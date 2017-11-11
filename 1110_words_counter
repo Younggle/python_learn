@@ -26,3 +26,30 @@ for word in words:
     word = word.lower()
 
 pprint.pprint(count)
+
+######### 
+##如何获取嵌套字典中的元素
+
+##定义一个字典
+pinicPeople = {'Bob':{'apple':10,'cookie':20},
+               'tommy':{'pear':10,'apple':2},
+               'Jackie':{'sandwiches':5,'juice':5}}
+
+## 统计各种食物的数量方法
+def countBrought(food,item):
+
+    numBrought = 0
+
+    for v in food.values():
+
+        numBrought += v.get(item,0)
+
+    return numBrought
+
+##从dict中获取到food的数量
+print ("Number of foods : \n")
+print ('apple {}'.format(countBrought(pinicPeople,'apple')))
+print ('cookie {}'.format(countBrought(pinicPeople,'cookie')))
+print('pear {}'.format(countBrought(pinicPeople,'pear')))
+print ('juice {}'.format(countBrought(pinicPeople,'juice')))
+print ('sandwiches {}'.format(countBrought(pinicPeople,'sandwiches')))

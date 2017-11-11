@@ -53,3 +53,19 @@ print ('cookie {}'.format(countBrought(pinicPeople,'cookie')))
 print('pear {}'.format(countBrought(pinicPeople,'pear')))
 print ('juice {}'.format(countBrought(pinicPeople,'juice')))
 print ('sandwiches {}'.format(countBrought(pinicPeople,'sandwiches')))
+
+
+###  11.11
+##  在学习了set之后，再来看着个问题，就很简单了
+# 声明一个集合set()
+foodBag = set()
+
+## 遍历pinicPeople中的key,放入foodBag
+for v in pinicPeople.values:
+       foodBag = foodBag | set(v)
+       
+print(foodBag)
+for food in foodBag:
+        print('{:10}  {}'.format(food,countBrought(pinicPeople,food)))
+
+

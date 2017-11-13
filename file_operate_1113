@@ -1,0 +1,101 @@
+## python  版本2.7
+
+## 本节主要是关于文本文件的读取，修改，写入操作
+
+from _future_ import print_function
+
+## open(file,mode)方法，打开文件 mode有w,r,a，不填写的话默认为r
+## 前置条件，在同一个目录下有名为test.md的文件，否则会报错
+
+test_file = open('test.md')
+test_r = test_file.read()
+## 查看文件内容的类型
+print(type(test_r))
+## 关闭文本输出流
+test_file.close()
+
+## 在原来的文件中 追加内容
+with open('test.md','a') as te:
+    te.write('\n append a new line \n')
+
+## 读取文本
+with open('test.md','r') as te:
+    print(te.read())
+    
+## 与'a' 不同 'w'是直接将文件内容替换
+with open('test.md','w') as te:
+    te.write('all words will be respace')
+    print(te.read())
+    
+## hell()方法，可以看到读取文件字符的指针的位置
+**------------------------------------------ 具体用法有待补充
+with open('test.md','r+') as te:
+    ## 在读取文件之前指针的位置
+    print(te.tell())
+    te.write('\n where is index \n')
+    
+    ## 打印出写入内容后指针所在index
+    print(te.tell())
+    print(te.read())
+    te.seek(0)
+    print(te.read())
+ ** --------------------------------------------------------------------
+ 
+ 
+ 
+ 
+## 直接写入大段文本内容到文件中 ''' 内容 '''  
+with open('test.txt',mode='w') as test:
+    test.write('''Let's take our time tonight
+    Above us all the stars are watchin'.
+    There's no place I'd rather be in this world.
+    Your eyes are where I'm lost in.
+    Underneath the chandelier.
+    Because the country is beautiful,
+    because the Northern Lights are magical,
+    and because it was there that I fell in love.
+    If you're already attracted to someone,
+    and then they play your love interest in the show,
+    it's becomes very easy to fall in love.
+    ''')
+
+## 将文件内容一行行读取出来
+with open('test.txt') as text:
+    for line in text:
+        print (line)
+
+## 按照自己想要的长度去分割内容
+with open('test.txt') as t:
+    ## 50个字符执行一个 +++++ 分割
+    size_to_read = 50
+    t_content = t.read(size_to_read)
+    while len(t_content)>0:
+        print(t_content,end='++++++')
+        t_content = t.read(size_to_read)
+        
+## 对中文进行的读取,open(file,mode,buffering) buffering在python 3.x中要填写 encoding=utf-8
+## 不然有可能会出现乱码
+with open("chinese test.txt",'w') as chin:
+    chin.write('''
+    月光色 女子香
+    泪断剑 情多长
+    有多痛 无字想 忘了你
+    孤单魂 随风荡
+    谁去想 痴情郎
+    这红尘的战场
+    千军万马 有谁能称王
+
+    过情关 谁敢闯
+    望明月 心悲凉
+    千古恨 轮回尝
+    眼一闭 谁最狂
+    这世道的无常
+    注定敢爱的人一生伤
+    ''')
+
+
+with open('chinese test.txt','r') as chin:
+    s = chin.read()
+    print()
+    print(s)
+    print()

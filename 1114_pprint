@@ -1,0 +1,17 @@
+python版本 2.7
+
+# -*- coding=utf-8 -*-
+
+import pprint   
+books = [{'name':'Java','desc':'objective'},
+         {'name':'php','desc':'nodesc'},
+         {'name':'python','desc':'beautiful'}]
+
+s = pprint.pformat(books)
+print(type(s))
+
+print (s)
+
+with open('mybooks.py','w') as myb:
+    myb.write('books = ' + s + "\n")
+    

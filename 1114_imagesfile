@@ -1,0 +1,62 @@
+## python 版本 2.7
+
+# 读取图片文件，进行复制
+
+with open('naizi.png','rb') as r_images:
+    with open('naizi_cpoy.png','wb') as w_images:
+        ## 每次读取4k大小
+        chunk_size = 4096
+        r_images_chunk = r_images.read(chunk_size)
+        while len(r_images_chunk) > 0:
+            ## 写入copy文件中
+            w_images.write(r_images_chunk)
+            r_images_chunk = r_images.read(chunk_size)
+
+## 其实只要修改文件的格式，其他格式的文件同样可以执行相同的操作
+
+
+
+
+
+
+
+## =========================================  shelve 模块 ======================================
+
+## shelve模块，生成持久化的类似字典的对象，常用于创建简单的数据库
+import shelve 
+
+## shelve的open()方法包含了创建文件的功能，每当使用了这个方法，自动生成一个文件在同一文件夹
+newfile = shelve.open('shelve')
+fileType = ['txt','mp3','png','jpg','avi','xml']
+newfile['fileType'] = newfile
+
+## 完成内容写入后关闭文本输入流，只有调用了close()方法，newfile中的内容才会写入到磁盘中
+newfile.close()
+
+## 完成创建写入后，读取这个文件
+r_file = shelve.open('shelve')
+print(f_file['fileType']) ## 执行结果：['txt','mp3','png','jpg','avi','xml']
+newfile.close()
+
+## 更新文本内容
+update_file = shelve.open('shelve')
+up_shel = update_file['fileType']
+up_shel[0] = 'mp4'
+update_file['fileType'] = up_shel
+print up_shel  ## 执行结果为['mp4','mp3','png','jpg','avi','xml']
+
+## 需要注意的
+s = shelve.open('test.md')
+s['x'] = ['a','b','c']
+s['x'].append('d')
+print(s['x'])        ## 执行这段代码并不能将d添加到S['X']中
+
+## 想要将'd'追加到s['x']中 需要在open()中添加 wirteback=True，否则无法写入
+s = shelve.open('test.md',writeback=True)
+
+
+
+
+
+
+

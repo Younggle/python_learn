@@ -1,0 +1,79 @@
+## python版本 3.4
+
+## 利用文件操作，实现一个简单的实际应用，试卷生成器
+
+## -*- coding=utf-8 -*-
+
+import random
+
+## 新建字典，用于存储试卷题目
+
+allWords = {
+'AA':'aa','BB':'bb','CC':'cc',
+'DD':'dd','EE':'ee','FF':'ff',
+'GG':'gg','HH':'hh','II':'ii',
+'JJ':'jj','KK':'kk','LL':'ll',
+'MM':'mm','NN':'nn','OO':'oo',
+'PP':'pp','QQ':'qq','RR':'rr',
+'SS':'ss','TT':'tt','UU':'uu',
+'VV':'vv','WW':'ww','XX':'xx',
+'YY':'yy','ZZ':'zz'
+}
+
+stuNum = int(input('\n 需要几份试卷？')) 
+
+##
+for quizNum in range(stuNum):
+    
+    ## 新建2个文本文件用于存储试卷题目和试卷答案
+    quizFile = open('testquiz{}.txt'.format(quizNum + 1),'w',encoding='utf-8')
+    quizAnswer = open('testquiz_answer{}.txt'.format(quizNum +1),'w',encoding='utf-8')
+    
+    ## 制定试卷的格式 '''
+    #  姓名：
+    #  学号：
+    #  班级：
+    #  20道题目
+    ## '''
+    
+    quizFile.write('姓名:\n\n 学号:\n\n 班级：\n\n')
+    quizFile.write('' *20 + 'words change test{}\n\n'.format(quizNum + 1))
+    
+    ## 获取到allWords中的key值放入list
+    ## shuffle() 方法将序列的所有元素随机排序。
+    upperWords = list(allWords.keys())
+    random.shuffle(upperWords)
+    
+    ## 生成答案（1个正确答案，3个错误答案）
+    for answerNum in range(len(upperWords)):
+        
+        ## 正确答案根据upperWords[]来得到对应的lowerWords[]
+        correctAnswer = allWords[upperWords[answerNum]]
+        
+        ## 错误答案
+        wrongAnswers = list(allWords.values())
+        ## 去掉正确答案
+        wrongAnswers.remove(correctAnswer)
+        ## sample()从wrongAnswer中随机截取3个值
+        wrongAnswers = random.sample(wrongAnswers,3)
+        
+        ## 全部4个选项
+        answerOptions = wrongAnswers + [correctAnswer]
+        ## 再次随机排序
+        random.shuffle(answerOptions)
+        
+        ## 生成题目
+        quizFile.write('{},{}的小写是？ \n'.format(lowerWordsNum + 1,upperWords[answerNum]))
+        for i in range(4):
+            quizFile.write('{}.{}\n'.format('ABCD'[i],answerOptions[i]))
+            print()
+        
+        ## 生成答案    
+        quizAnswer.write('{}.{} '.format(answerNum + 1,'ABCD'[answerOptions.index(correctAnswer)]))
+    
+    ## 关闭输出流
+    quizFile.close()
+    quizAnswer.close()
+        
+
+    

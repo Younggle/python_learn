@@ -1,0 +1,72 @@
+##python版本 3.4
+## 关于程序的容错性，through exception 有很大的作用
+
+
+## 举个栗子，写一个方法
+def spam(divideBy):
+    return 42/divideBy
+
+print(spam(6))
+print(spam(7))
+
+## 执行这一行就会报错
+print(spam(0))
+
+#### 报错信息
+Traceback (most recent call last):
+  File "D:/pycharm_file/pythonlearn/try_catch_1117.py", line 8, in <module>
+    print(spam(0))
+  File "D:/pycharm_file/pythonlearn/try_catch_1117.py", line 4, in spam
+    return 42/divideBy
+ZeroDivisionError: division by zero
+
+## 为了提高程序的容错性，在代码中添加try...except...
+
+def spam(divideBy):
+    try:
+        return 42 / divideBy
+    except ZeroDivisionError:
+        pass
+        
+## 当执行 print(spam(0)) 时，结果就是None，就不会报错了
+
+-----------------------------------------------------------------
+
+## open一个不存在的文件操作时，报错
+f = open('test.txt')
+print(f)
+
+## 加入try...exception...
+try:
+    f = open('test.txt')
+except FileNotFoundError:
+    print('no such file')
+## 如果出现了其他的错误,打印出错误信息
+except Exception as e:
+    print('there are something wrong :',e )
+
+
+## notice，Exception 和 NameError的区别
+## 如果这样执行代码，编译器依然会报错。如果将NameError更换为Exception就不会报错
+try:
+    f = open('yuy.txt')
+except NameError as e:
+    print(e)
+else:
+    print('there are something wrong')
+finally:
+    print('end')
+
+
+## 这样就不会报错
+a = 'test'
+try:
+    a = b
+except NameError as e:
+    print(e)
+else:
+    print(a)
+finally:
+    print('end')
+
+

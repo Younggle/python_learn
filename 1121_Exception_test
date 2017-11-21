@@ -1,0 +1,85 @@
+## python 版本 3.4
+
+## 关于raise函数的用法
+
+## raise处理异常，当程序出现错误，python会自动引发异常，也可以通过raise显示地引发异常。一旦执行了raise语句，raise后面的语句将不能执行。
+
+
+def boxPrint(symbol,width,height):
+    ## 当symbol输入错误时，跳过这个if判断，所有包含在if中的语句都不执行了
+    if len(symbol) != 1:
+        raise Exception('Symbol must be a single character')
+    if width <= 2:
+        raise Exception('Width must be greater than 2.')
+    if height <= 2:
+        raise Exception('Height must be graeter than 2.')
+    print(symbol * width)
+
+    for i in range(height -2 ):
+        print(symbol + '' * (width - 2) * symbol)
+
+    print(symbol * width)
+    print()
+
+for sym,w,h in (('*',4,4),('0',20,2),('x',3,3),('Z',3,3)):
+    try:
+        boxPrint(sym,w,h)
+    except Exception as err:
+        print('An exception happened:' + str(err)+'\n')
+        
+ ---------------------------------------------------------------------------------------
+## debug是调试程序很重要的一步，debug需要logging支持
+## logging 日志模块
+## 本人主要用来打印日志，还有其他用法请自行查询
+##日志级别大小关系为：CRITICAL > ERROR > WARNING > INFO > DEBUG > NOTSET，也可以自己定义日志级别。
+
+logging.debug('This is debug message')
+logging.warning('this is warning message')
+logging.error('this is error message')
+
+
+import logging
+
+## 通过logging.basicConfig函数对日志的输出格式及方式做相关配置 # 时间 - 等级 - 消息
+logging.basicConfig(level= logging.DEBUG,format= '%(asctime)s - %(levelname)s - %(message)s')
+
+## 求阶乘n!
+
+def factorial(a):
+    logging.debug('Start of factorial({})'.format(a))
+
+    total = 1
+
+    for i in range(1,a + 1):
+        total  *= i
+        logging.debug('i is {},total is {}'.format(a,total))
+
+    logging.debug('end of factorial({})'.format(a))
+    return total
+print(factorial(5))
+logging.debug('end')
+
+## 运行结果如下
+
+2017-11-21 16:43:08,902 - DEBUG - Start of factorial(5)
+2017-11-21 16:43:08,903 - DEBUG - i is 5,total is 1
+2017-11-21 16:43:08,903 - DEBUG - i is 5,total is 2
+2017-11-21 16:43:08,903 - DEBUG - i is 5,total is 6
+2017-11-21 16:43:08,903 - DEBUG - i is 5,total is 24
+2017-11-21 16:43:08,903 - DEBUG - i is 5,total is 120
+2017-11-21 16:43:08,903 - DEBUG - end of factorial(5)
+2017-11-21 16:43:08,903 - DEBUG - end
+120
+
+## 想要隐藏这些信息，只需要加上下面的代码即可
+logging.disable(logging.CRITICAL)
+
+## 如果要将debug进行信息收集，将代码中加入filename = 'debug.txt'即可，执行完程序后，在目录下会生成debug.txt文件收集日志信息：
+## 注意要将 disable() 进行注释，否则文档中什么都没有
+logging.basicConfig(filename='debug.txt',level= logging.DEBUG,format= '%(asctime)s - %(levelname)s - %(message)s')
+
+------------------------------------------------
+
+## 关于断言 aasert
+## 待续
+

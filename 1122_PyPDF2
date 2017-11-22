@@ -1,0 +1,57 @@
+## python版本3.4
+## 在python中有很多关于文件操作的模块，PyPDF2主要用于pdf文件的相关操作
+
+# -*- coding:utf-8 -*-
+import PyPDF2,time
+## 最后合成的pdf，是根据filenames中文件的顺序进行追加合成的：test01 <- test02 <- test03
+filenames = ['test01.pdf','test02.pdf','test03.pdf']
+
+merger = PyPDF2.PdfFileMerger()
+
+## 读取所有filenames中的元素后进行追加合成
+for filename in filenames:
+    merger.append(PyPDF2.PdfFileReader(filename))
+    
+## 合成完毕，将合成内容写入新文件python.pdf中
+merger.write('python.pdf')
+
+## 完成了pdf的合成，就可以为其加水印了
+## 引入time模块，是为了防止合并的文件过大
+## 让程序等待2秒
+time.sleep(2)
+
+
+## 打开刚才生成的pdf文件,'rb'代表以二进制读取
+with open('python.pdf','rb') as pdfFile:
+    
+    ## pdfReader对象读取文件
+    pdfReader = PyPDF2.PdfFileReader(pdfFile)
+    ## 指定需要加水印的页数,0是索引
+    markFirstRage = pdfReader.getPage(0)
+    
+    ## 打开水印文件
+    with open('watermark.pdf','rb') as markFile:
+        pdfWatermarkReader = PyPDF2.PdfFileReader(markFile)
+        
+        ## 把python.pdf的第一页和水印文件合并
+        markxFirstRage.mergePage(pdfWatermarkReader.getPage(0))
+        
+        
+        ## 完成合并，将修改过的页再次写入
+        pdfWriter = PyPDF2.PdfFileWriter()
+        pdfWriter.addPage(markFirstRage)
+        
+        ## 整合剩余的页对象，从第二页开始
+        for pageNum in range(1,pdfReader.numPages):
+            pageObj = pdfReader.getPage(pageNum)
+            pdfWriter.addPage(pageObj)
+        ## 新开一个文件，将所有的文件写入到watermarkPdf这个文件中
+        with open('watermarkPdf.pdf','wb') as resault:
+            pdfWriter.write(resault)
+
+## 有多少个open,就有多少close
+pdfFile.close()
+markFile.close()
+resault.close()
+
+

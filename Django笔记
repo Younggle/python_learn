@@ -1,0 +1,11 @@
+Django笔记
+1.搭建Django,下载python 2.7-3.4,django 1.8
+2.配置环境变量
+3.使用python IDE查看Django安装情况
+  import django, django.get_version()
+4.能查看到Django的版本,说明安装成功。
+
+创建属于自己的django项目
+1.在cmd中输入django-admin startproject mytest,生成django项目mytest
+2.cd到mytest中执行，python manage.py runserver，完成这步，django就起起来了
+3.在浏览器中输入 localhost:8000 可以看到，It works！

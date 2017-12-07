@@ -1,0 +1,41 @@
+// 评分星级条 RatingBar ☆☆☆☆☆
+// RatingBar的属性：
+  stepSize：点击星条每次增加的星星个数 (浮点型数据)
+  numStars: 设置星星数量 (整型数据)
+  rating: 默认星级 (浮点型)
+  
+// 举个栗子
+<RatingBar 
+        android:id="@+id/ratingbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:stepSize="0.5"
+        android:numStars="5"
+        android:rating="2.5"
+        android:layout_below="@+id/testview1"/>
+        
+// 代码
+public class MainActivity extends Activity {
+	private RatingBar ratingbar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        ratingbar = (RatingBar)findViewById(R.id.ratingbar);
+        RatingBarListener rblistener = new RatingBarListener();
+        ratingbar.setOnRatingBarChangeListener(rblistener);
+    }
+    
+    class RatingBarListener implements OnRatingBarChangeListener{
+
+		@Override
+		public void onRatingChanged(RatingBar ratingBar, float stepSize, boolean fromUser) {
+			// TODO Auto-generated method stub
+			System.out.println("startsnumber"+stepSize+",fromUser"+fromUser);
+		}
+    	
+    }
+    }
+  
